@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { NavDropdown } from 'react-bootstrap'
 import { useAuth } from "../../negocio/context/AuthContext";
+import { getCollection } from "../../data/getCollection"
+import { addNewUser } from "../../data/insertUser"
 import './header.css'
+import { async } from "@firebase/util";
 
 const styles = {
     container: {
@@ -30,6 +33,7 @@ const styles = {
 function Header() {
     const [open, setOpen] = useState('flex')
     const { logout, user } = useAuth();
+    const [ usuario, setUsuario ] = useState({correo: '', id: ''})
 
     const handleLogout = async () => {
         try {
@@ -38,6 +42,17 @@ function Header() {
         console.error(error.message);
         }
     };
+
+    async function getUsuarios() {
+        const newUsuarios = await getCollection('Usuarios')
+    }
+
+    if(usuario.correo === '' && usuario.id === '') {
+        const correoA = user.email
+        const idA = user.reloadUserInfo.localId
+        addNewUser(usuario)
+    }
+    console.log(user.email)
 
   return (
     <div style={styles.container}>
@@ -62,15 +77,11 @@ function Header() {
                         <a  href="#">About</a>
                         <a  href="#">Admin</a>
                     </nav>
-                    
-                    
-                    
-                
             </header>
         
             <div style={{display: 'flex' ,position: 'absolute' ,right: '20px', top: '154px'}}>
 
-                <NavDropdown title={user.displayName || 'Usuario'} id="nav-dropdown">
+                <NavDropdown title={(user.displayName  || 'Usuario'  ) + ' ' + user.reloadUserInfo.localId} id="nav-dropdown">
                     <NavDropdown.Item eventKey="4.1">Mi perfil</NavDropdown.Item>
                     <NavDropdown.Item eventKey="4.2">Mis pedidos</NavDropdown.Item>
                     <NavDropdown.Divider />
