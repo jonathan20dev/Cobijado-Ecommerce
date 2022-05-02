@@ -1,0 +1,10 @@
+.cardContainer {
+    width: 18rem;
+    margin: 10px;
+}
+
+@media (max-width: 950px) {
+    .card {
+        width: 15rem;
+    }
+  }
