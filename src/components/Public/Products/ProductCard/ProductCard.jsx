@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import './ProductCard.css'
-import { Button } from '../shared/Button/Button'
+import { Button } from '../../shared/Button/Button'
 
 function ProductCard({ producto }) {
   return (

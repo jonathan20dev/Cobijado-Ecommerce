@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../negocio/context/AuthContext";
+import { useAuth } from "../../../negocio/context/AuthContext";
 import { Alert } from "./Alert";
 
 export function Login() {
-  const [user, setUser] = useState({
+  const [newUser, setUser] = useState({
     email: "",
     password: "",
   });
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const { login, loginWithGoogle, resetPassword, insertUserFB } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -16,30 +16,36 @@ export function Login() {
     e.preventDefault();
     setError("");
     try {
-      await login(user.email, user.password);
+      await login(newUser.email, newUser.password);
       navigate("/");
-    } catch (error) {
+    } catch (error) {   
       setError(error.message);
     }
   };
 
+
   const handleChange = ({ target: { value, name } }) =>
-    setUser({ ...user, [name]: value });
+    setUser({ ...newUser, [name]: value });
 
   const handleGoogleSignin = async () => {
     try {
       await loginWithGoogle();
+      insertUserFB()
+      //setUaux({correo: user.email, id: user.reloadUserInfo.localId})
       navigate("/");
+      
     } catch (error) {
       setError(error.message);
     }
   };
 
+  
+
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    if (!user.email) return setError("Write an email to reset password");
+    if (!newUser.email) return setError("Write an email to reset password");
     try {
-      await resetPassword(user.email);
+      await resetPassword(newUser.email);
       setError('We sent you an email. Check your inbox')
     } catch (error) {
       setError(error.message);

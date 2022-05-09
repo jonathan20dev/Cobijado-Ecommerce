@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../negocio/context/AuthContext";
+import { useAuth } from "../../../negocio/context/AuthContext";
 import { Alert } from "./Alert";
 export function Register() {
-  const { signup } = useAuth();
+  const { signup, insertUserFB } = useAuth();
 
   const [user, setUser] = useState({
     email: "",
@@ -19,6 +19,7 @@ export function Register() {
     try {
       await signup(user.email, user.password);
       navigate("/");
+      insertUserFB()
     } catch (error) {
       setError(error.message);
     }

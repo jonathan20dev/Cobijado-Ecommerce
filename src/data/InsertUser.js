@@ -1,10 +1,7 @@
-import { addDoc, collection } from 'firebase/firestore';
+import { setDoc, doc  } from 'firebase/firestore';
 import { db } from './firebase';
-//( ´･･)ﾉ(._.`)
-const userCollection = collection(db, 'Usuarios');
-const addNewUser = async (usuario) => {
-  alert(usuario.correo + " " + usuario.id)
-  await addDoc(userCollection, usuario);
-};
+const insertUser = async (id,user) => {
+    return setDoc(doc(db, 'Usuarios', id), user);
+}
 
-export { addNewUser };
+export { insertUser };

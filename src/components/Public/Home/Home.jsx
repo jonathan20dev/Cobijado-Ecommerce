@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Header } from "./shared/Header";
+import { Header } from "../shared/Header";
 import { CarouselBanner } from "./CarouselBanner"
 import { Novedades } from "./Novedades/Novedades"
-import { ProductCard } from "./ProductCard/ProductCard"
-import { Footer } from "./shared/Footer"
+import { ProductCard } from "../Products/ProductCard/ProductCard"
+import { Footer } from "../shared/Footer"
 
 export function Home() {
   const [productosNovedad] = useState([

@@ -9,6 +9,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../../data/firebase";
+import { insertUser } from '../../data/insertUser'
 
 const authContext = createContext();
 
@@ -20,17 +21,32 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [userFb, setUserFb] = useState({correo: '', codigo_postal: 0, direccion: '', img: '', nombre: ''});
   const [loading, setLoading] = useState(true);
 
 
-//REGISTRO
+  useEffect(() => {
+    const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubuscribe();
+  }, []);
+
+  const insertUserFB = () => {
+    const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
+      const photo = currentUser.photoURL || " "
+      const disName = currentUser.displayName || "Usuario"
+      insertUser(currentUser.reloadUserInfo.localId, {...userFb, correo: currentUser.email, img: photo, nombre: disName})
+      setUserFb({...userFb, correo: currentUser.email, img: photo, nombre: disName})
+    })
+    obtenerUsuario()
+  }
 
   const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+    
   };
-
-
-  //LOGIN
 
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -41,21 +57,11 @@ export function AuthProvider({ children }) {
     return signInWithPopup(auth, googleProvider);
   };
 
-
-  //CERRAR Logout
   const logout = () => signOut(auth);
 
   const resetPassword = async (email) => sendPasswordResetEmail(auth, email);
 
-  useEffect(() => {
-    const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
-      //console.log(currentUser.reloadUserInfo.localId);
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => unsubuscribe();
-  }, []);
-
+  //Compartidos
   return (
     <authContext.Provider
       value={{
@@ -66,6 +72,7 @@ export function AuthProvider({ children }) {
         loading,
         loginWithGoogle,
         resetPassword,
+        insertUserFB
       }}
     >
       {children}
