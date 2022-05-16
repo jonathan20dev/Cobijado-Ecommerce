@@ -7,7 +7,7 @@ function Novedades({ children }) {
       <div style={{ textAlign: "center" }}>
         <p className="tituloNovedades">Novedades</p>
       </div>
-      <div className="container">{children}</div>
+      <div style={{ width: '100%', display: "flex", justifyContent: 'center' }}>{children}</div>
     </div>
   );
 }

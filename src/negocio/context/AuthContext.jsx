@@ -9,7 +9,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../../data/firebase";
-import { insertUser } from '../../data/insertUser'
+import { insertUser } from '../../data/InsertUser'
 
 const authContext = createContext();
 
