@@ -9,18 +9,22 @@ const useProducts = () => {
   };
 
 function ProductsProvider({children}) {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const obtenerProductos = async () => {
     const products = await getCollection("Productos");
     setProducts(products);
   };
 
+  const productoActual = (id) => products.find((p) => p.id === id);
+
   useEffect(() => {
     obtenerProductos();
-  }, [products]); 
+    console.log('peticion')
+  }, []); 
+
   return (
-    <ProductsContext.Provider value={{products}}>
+    <ProductsContext.Provider value={{products, productoActual}}>
         {children}
     </ProductsContext.Provider>
   )

@@ -1,25 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { Products } from "./Products";
-import { Navbar, Nav } from "react-bootstrap";
-import { getCollection } from "../../../data/GetProductos";
 import { useProducts } from "../../../negocio/context/ProductsContext";
 import { NavLink } from "react-router-dom";
 
 function ProductsShop() {
-  /* const [products, setProducts] = useState([]);
-
-  const obtenerProductos = async () => {
-    const products = await getCollection("Productos");
-    setProducts(products);
-  };
-
-  useEffect(() => {
-    obtenerProductos();
-  }, [products]); */
   const products = useProducts();
-  console.log(products);
 
   const handleChange = () => {
     //filter recibe como parametro la categoria
@@ -76,7 +63,7 @@ function ProductsShop() {
           </li>
         </ul>
       </div>
-      {/* <Products products={products} /> */}
+      {<Products products={products.products} />}
       <Footer />
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { ProductsProvider } from "../../../negocio/context/ProductsContext";
 import "./bootstrap.min.css";
 import {ProductCard} from './ProductCard.jsx'
 
@@ -16,8 +17,9 @@ function Products({ products }) {
               >
                 <div className="reflow-product-list ref-cards">
                   <div className="ref-products">
+                  <ProductsProvider>
                     {products.map(product => <ProductCard key= {product.id} {...product}/>)}
-                    
+                    </ProductsProvider>
                   </div>
                 </div>
               </div>

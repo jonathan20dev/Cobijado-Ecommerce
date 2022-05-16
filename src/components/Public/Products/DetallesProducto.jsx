@@ -1,24 +1,29 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useProducts } from "../../../negocio/context/ProductsContext";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 
 function DetallesProducto() {
+  const { productoActual } = useProducts();
   const { id } = useParams();
   let [cant, setCant] = useState(1);
+  const [producto, setProducto] = useState(productoActual(id));
 
   const handleChange = (accion) => {
-    if (accion === 'increase') {
-      setCant(cant+=1)
-    } else if (accion === 'decrease') {
+    if (accion === "increase") {
+      setCant((cant += 1));
+    } else if (accion === "decrease") {
       if (cant !== 1) {
-        setCant(cant-=1)
+        setCant((cant -= 1));
       }
     }
-  }
+  };
+
+
   return (
     <div>
-      <Header/>
+      <Header />
       <section className="py-5 mt-5">
         <div className="container py-5">
           <div
@@ -32,14 +37,14 @@ function DetallesProducto() {
                 <div className="ref-preview">
                   <img
                     className="ref-image active"
-                    src="https://cdn.bootstrapstudio.io/products/product-30_md.jpg"
+                    src={producto.img}
                     data-reflow-preview-type="image"
                   />
                 </div>
               </div>
               <div className="ref-product-data">
-                <h2 className="ref-name">Chanchito</h2>
-                <strong className="ref-price">$762.74</strong>
+                <h2 className="ref-name">{producto.nombre}</h2>
+                <strong className="ref-price">{producto.precio}</strong>
                 <span
                   data-reflow-type="add-to-cart"
                   data-reflow-shoppingcart-url="shopping-cart.html"
@@ -68,11 +73,21 @@ function DetallesProducto() {
                       data-reflow-quantity="1"
                     >
                       <div className="ref-quantity-widget">
-                        <div className="ref-decrease" onClick={() => {handleChange('decrease')}}>
+                        <div
+                          className="ref-decrease"
+                          onClick={() => {
+                            handleChange("decrease");
+                          }}
+                        >
                           <span></span>
                         </div>
-                        <input type="text" value={cant} />
-                        <div className="ref-increase" onClick={() => {handleChange('increase')}}>
+                        <div type="text" style={{width: '35px', justifyContent: 'center', display: 'flex', alignContent: 'center'}}>{cant}</div>
+                        <div
+                          className="ref-increase"
+                          onClick={() => {
+                            handleChange("increase");
+                          }}
+                        >
                           <span></span>
                         </div>
                       </div>
@@ -82,18 +97,19 @@ function DetallesProducto() {
                     </a>
                   </div>
                 </span>
-                <div className="ref-description">
-                  Hic quasi <b>quam</b> cupiditate <i>aut</i> non minus quae
-                  necessitatibus.
-                </div>
+                <div className="ref-description">{producto.descripcion}</div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
+
+
+  
+
 
 export { DetallesProducto };

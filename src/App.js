@@ -24,7 +24,7 @@ function App() {
           <Route path="/about" element={<ProtectedRoute> <About /> </ProtectedRoute>}/>
           <Route path="/contact" element={<ProtectedRoute> <Contact /> </ProtectedRoute>}/>
           <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>}/>
-          <Route path="/products" element={<ProtectedRoute> <ProductsProvider><ProductsShop /> </ProductsProvider></ProtectedRoute>}/>
+          <Route path="/products" element={<ProtectedRoute> <ProductsProvider> <ProductsShop /> </ProductsProvider></ProtectedRoute>}/>
           <Route path="/product/:id" element={<ProtectedRoute> <ProductsProvider><DetallesProducto /></ProductsProvider> </ProtectedRoute>}/>
           <Route path="/shoppingCart" element={<ProtectedRoute> <Cart /></ProtectedRoute>}/>
         </Routes>

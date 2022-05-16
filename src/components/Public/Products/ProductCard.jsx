@@ -1,7 +1,11 @@
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ nombre, descripcion, precio, img, id }) {
+  const navigate = useNavigate()
   return (
-    <a className="ref-product" href={`/product/${id}`}>
+    <div className="ref-product" onClick={()=> {
+      navigate(`/product/${id}`)
+    }}>
       <img src={img} loading="lazy" className="ref-image" />
       <div className="ref-product-data">
         <div className="ref-product-info">
@@ -10,7 +14,7 @@ function ProductCard({ nombre, descripcion, precio, img, id }) {
         </div>
         <p className="ref-price">{precio}</p>
       </div>
-    </a>
+    </div>
   );
 }
 
