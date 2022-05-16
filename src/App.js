@@ -11,6 +11,7 @@ import {Profile } from "./components/Public/User/Profile"
 import { ProductsShop } from "./components/Public/Products/ProductsShop.jsx";
 import { DetallesProducto } from "./components/Public/Products/DetallesProducto.jsx";
 import { ProductsProvider } from "./negocio/context/ProductsContext.jsx";
+import { Cart } from "./components/Public/Cart/CurrentCart.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>}/>
           <Route path="/products" element={<ProtectedRoute> <ProductsProvider><ProductsShop /> </ProductsProvider></ProtectedRoute>}/>
           <Route path="/product/:id" element={<ProtectedRoute> <ProductsProvider><DetallesProducto /></ProductsProvider> </ProtectedRoute>}/>
+          <Route path="/shoppingCart" element={<ProtectedRoute> <Cart /></ProtectedRoute>}/>
         </Routes>
       </AuthProvider>
     </div>

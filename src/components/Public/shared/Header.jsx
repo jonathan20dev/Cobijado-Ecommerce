@@ -20,7 +20,10 @@ function Header() {
       style={{ marginTop: "15px", marginBottom: "15px" }}
     >
       <nav className="navbar navbar-light navbar-expand-md">
-        <div className="container" style={{ flexDirection: "row", marginBottom: '5px'  }}>
+        <div
+          className="container"
+          style={{ flexDirection: "row", marginBottom: "5px" }}
+        >
           <button
             className="navbar-toggler text-primary border-0"
             data-bs-toggle="collapse"
@@ -37,12 +40,18 @@ function Header() {
               ></i>
             </span>
           </button>
-          <div className="navbar-brand d-flex align-items-center justify-content-center" style={{letterSpacing:'0.1em', fontSize:'28px'}}>
+          <div
+            className="navbar-brand d-flex align-items-center justify-content-center"
+            style={{ letterSpacing: "0.1em", fontSize: "28px" }}
+          >
             Cobijado
           </div>
           <div id="navcol-1" className="collapse navbar-collapse">
-            <ul className="navbar-nav mx-auto" style={{ gap: "25px", margin: '8px' }}>
-              <li className="nav-item" style={{fontSize: '1.2rem'}}>
+            <ul
+              className="navbar-nav mx-auto"
+              style={{ gap: "25px", margin: "8px" }}
+            >
+              <li className="nav-item" style={{ fontSize: "1.2rem" }}>
                 <NavLink
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active" : ""}`
@@ -53,8 +62,8 @@ function Header() {
                   Inicio
                 </NavLink>
               </li>
-              <li className="nav-item" style={{fontSize: '1.2rem'}}>
-              <NavLink
+              <li className="nav-item" style={{ fontSize: "1.2rem" }}>
+                <NavLink
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active" : ""}`
                   }
@@ -64,8 +73,8 @@ function Header() {
                   Tienda
                 </NavLink>
               </li>
-              <li className="nav-item" style={{fontSize: '1.2rem'}}>
-              <NavLink
+              <li className="nav-item" style={{ fontSize: "1.2rem" }}>
+                <NavLink
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active" : ""}`
                   }
@@ -75,8 +84,8 @@ function Header() {
                   Contacto
                 </NavLink>
               </li>
-              <li className="nav-item" style={{fontSize: '1.2rem'}}>
-              <NavLink
+              <li className="nav-item" style={{ fontSize: "1.2rem" }}>
+                <NavLink
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active" : ""}`
                   }
@@ -92,20 +101,32 @@ function Header() {
       </nav>
       <div
         className="d-flex flex-row justify-content-center align-items-center"
-        style={{ padding: "10px", position: "absolute", right: "10px", top: '18px' }}
+        style={{
+          padding: "10px",
+          position: "absolute",
+          right: "10px",
+          top: "18px",
+        }}
       >
-        <i
-          className="bi bi-cart2"
-          style={{
-            fontSize: "1.5rem",
-            width: "auto",
-            height: "auto",
-            marginRight: "10px",
-            marginLeft: "5px",
-            paddingRight: "10px",
-            paddingLeft: "10px",
-          }}
-        ></i>
+        <NavLink
+          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+          aria-current="page"
+          to="/shoppingCart"
+        >
+          <i
+            className="bi bi-cart2"
+            style={{
+              color: 'black',
+              fontSize: "1.5rem",
+              width: "auto",
+              height: "auto",
+              marginRight: "10px",
+              marginLeft: "5px",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+            }}
+          ></i>
+        </NavLink>
         <div className="dropdown">
           <button
             className="btn btn-primary dropdown-toggle"
@@ -128,9 +149,12 @@ function Header() {
               }}
             ></i>
           </button>
-          <div className="dropdown-menu" style={{
-                margin: '5px'
-              }}>
+          <div
+            className="dropdown-menu"
+            style={{
+              margin: "5px",
+            }}
+          >
             <a className="dropdown-item" href="#">
               First Item
             </a>
