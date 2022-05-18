@@ -20,11 +20,11 @@ const PublicRoute = () => {
         <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<ProtectedRoute> <Home /> </ProtectedRoute>}/>
+        <Route path="/" element={<ProtectedRoute><ProductsProvider>  <Home /> </ProductsProvider></ProtectedRoute>}/>
         <Route path="/about" element={<ProtectedRoute> <About /> </ProtectedRoute>}/>
         <Route path="/contact" element={<ProtectedRoute> <Contact /> </ProtectedRoute>}/>
         <Route path="/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>}/>
-        <Route path="/products" element={<ProtectedRoute> <ProductsProvider> <ProductsShop /> </ProductsProvider></ProtectedRoute>}/>
+        <Route path="/products/:categoria" element={<ProtectedRoute> <ProductsProvider> <ProductsShop /> </ProductsProvider></ProtectedRoute>}/>
         <Route path="/product/:id" element={<ProtectedRoute> <ProductsProvider><DetallesProducto /></ProductsProvider> </ProtectedRoute>}/>
         <Route path="/shoppingCart" element={<ProtectedRoute> <Cart /></ProtectedRoute>}/>
         <Route path="/user-history" element={<ProtectedRoute> <UserHistory /></ProtectedRoute>}/>

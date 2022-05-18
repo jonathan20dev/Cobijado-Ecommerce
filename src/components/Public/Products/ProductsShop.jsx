@@ -3,14 +3,19 @@ import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { Products } from "./Products";
 import { useProducts } from "../../../negocio/context/ProductsContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 function ProductsShop() {
-  const products = useProducts();
+  const { categoria } = useParams();
+  const { products } = useProducts();
+  let productsCategoria = null
 
-  const handleChange = () => {
-    //filter recibe como parametro la categoria
-  };
+  if (categoria !== 'todos') {
+    productsCategoria = products.filter((producto) => {
+    return producto.categoria === categoria})
+  } else {
+    productsCategoria = products
+  }
 
   return (
     <div>
@@ -20,10 +25,10 @@ function ProductsShop() {
           <li className="nav-item">
             <NavLink style={{color: 'black'}}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
+                `nav-link ${isActive ? "fw-bold " : ""}`
               }
               aria-current="page"
-              to="/"
+              to="/products/todos"
             >
               Todos
             </NavLink>
@@ -31,10 +36,10 @@ function ProductsShop() {
           <li className="nav-item">
             <NavLink style={{color: 'black'}}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
+                `nav-link ${isActive ? "fw-bold" : ""}`
               }
               aria-current="page"
-              to="/"
+              to="/products/mujeres"
             >
               Mujeres
             </NavLink>
@@ -42,10 +47,10 @@ function ProductsShop() {
           <li className="nav-item">
             <NavLink style={{color: 'black'}}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
+                `nav-link ${isActive ? "fw-bold" : ""}`
               }
               aria-current="page"
-              to="/"
+              to="/products/hombres"
             >
               Hombres
             </NavLink>
@@ -53,17 +58,17 @@ function ProductsShop() {
           <li className="nav-item">
             <NavLink style={{color: 'black'}}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
+                `nav-link ${isActive ? "fw-bold" : ""}`
               }
               aria-current="page"
-              to="/"
+              to="/products/niños"
             >
               Niños
             </NavLink>
           </li>
         </ul>
       </div>
-      {<Products products={products.products} />}
+      {<Products products={productsCategoria} />}
       <Footer />
     </div>
   );

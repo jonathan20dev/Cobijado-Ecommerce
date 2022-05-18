@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <>
       <Header/>
-      <div>
+      <div style={{marginTop: '45px', marginBottom: '70px'}}>
         <div className="row">
           <div className="row mb-4">
             <div className="text-center mx-auto">

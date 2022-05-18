@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 function ProductCard({ nombre, descripcion, precio, img, id }) {
   const navigate = useNavigate()
   return (
-    <div className="ref-product" onClick={()=> {
+    <div className="ref-product" style={{cursor: 'pointer'}} onClick={()=> {
       navigate(`/product/${id}`)
     }}>
       <img src={img} alt="card-producto" loading="lazy" className="ref-image" />

@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
     <Header/>
-        <div className="container" style={{display: 'flex', flexDirection: 'column'}}>
+        <div className="container" style={{display: 'flex', flexDirection: 'column', marginTop: '45px'}}>
             <div className="block-heading justify-content-center text-center" style={{flexDirection: 'column', marginBottom: '40px', paddingTop: '20px', marginLeft: '15px', marginRight: '15px'}}>
                 <h2 className="text-dark">Nuestra Historia</h2>
                 <p style={{textAlign: 'center', maxWidth: '420px', margin: 'auto', opacity: '.7'}}><br/>

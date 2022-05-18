@@ -8,7 +8,17 @@ function DetallesProducto() {
   const { productoActual } = useProducts();
   const { id } = useParams();
   let [cant, setCant] = useState(1);
-  const [producto, setProducto] = useState(productoActual(id));
+  let producto = productoActual(id)
+
+  if (producto === undefined) {
+      producto = {
+        img: '',
+        nombre: '',
+        precio: '',
+        descripcion: ''
+      }
+    }
+
 
   const handleChange = (accion) => {
     if (accion === "increase") {

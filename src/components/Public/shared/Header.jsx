@@ -15,7 +15,8 @@ function Header() {
   };
 
   return (
-    <div
+    <>
+      <div
       className="d-flex flex-row justify-content-between"
       style={{ marginTop: "15px", marginBottom: "15px" }}
     >
@@ -68,7 +69,7 @@ function Header() {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                   aria-current="page"
-                  to="/products"
+                  to="/products/todos"
                 >
                   Tienda
                 </NavLink>
@@ -168,6 +169,9 @@ function Header() {
         </div>
       </div>
     </div>
+      <hr style={{marginBottom: '0px'}}/>
+    </>
+    
   );
 }
 
