@@ -6,6 +6,16 @@ const UserHistory = () => {
   return (
     <>
     <Header/>
+
+    <div className="row">
+          <div className="row mb-4">
+            <div className="text-center mx-auto">
+              <h2 className="text-dark" style={{marginLeft: '15px',paddingTop: '20px',}}>Historial de compra</h2>
+              <p className="text-muted">Puedes ver todo tu registro de compras dentro de la aplicación</p>
+            </div>
+          </div>
+        </div>
+
     <div className="container" style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
 
         {/* Toda la seccion va a ir dentro de un map, pero de momento
