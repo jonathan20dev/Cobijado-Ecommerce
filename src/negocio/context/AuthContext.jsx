@@ -21,7 +21,7 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [userFb, setUserFb] = useState({correo: '', codigo_postal: 0, direccion: '', img: '', nombre: ''});
+  const [userFb, setUserFb] = useState({correo: '', codigo_postal: 0, direccion: '', img: '', nombre: '', status: true});
   const [loading, setLoading] = useState(true);
 
 

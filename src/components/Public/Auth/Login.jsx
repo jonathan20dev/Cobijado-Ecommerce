@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../negocio/context/AuthContext";
 import { Alert } from "./Alert";
+import "./Login.css"
 
 export function Login() {
   const [newUser, setUser] = useState({
@@ -53,76 +54,52 @@ export function Login() {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto" >
-      {error && <Alert message={error} />}
-
-      <form style={{marginTop:'50px'}}
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      >
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Email
-          </label>
-          <input
-          autoComplete="off"
-            type="email"
-            name="email"
-            id="email"
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="mail@gmail.com"
-            
-          />
+    <div className="d-flex flex-column justify-content-center" id="login-box">
+        {error && <Alert message={error} />}
+        <div className="login-box-header">
+          <h4 style={{color: 'rgb(139,139,139)', marginBottom: '0px', fontWeight: 400, fontSize: '27px'}}>Login</h4>
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*************"
-          />
+        <div className="login-box-content">
+          <div className="fb-login box-shadow" />
+          <div className="gp-login box-shadow">
+            <a onClick={handleGoogleSignin} className="d-flex flex-row align-items-center social-login-link" style={{marginBottom: '10px'}} href="#!"><i className="bi bi-google" style={{color: 'rgb(255,255,255)', width: '56px'}} />Login con Google+</a></div>
         </div>
-
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#!"
-            onClick={handleResetPassword}
-          >
-            Forgot Password?
-          </a>
+        <div className="d-flex flex-row align-items-center login-box-seperator-container">
+          <div className="login-box-seperator" />
+          <div className="login-box-seperator-text">
+            <p style={{marginBottom: '0px', paddingLeft: '10px', paddingRight: '10px', fontWeight: 400, color: 'rgb(201,201,201)'}}>o</p>
+          </div>
+          <div className="login-box-seperator" />
         </div>
-      </form>
-      <button
-        onClick={handleGoogleSignin}
-        className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
-      >
-        Google login
-      </button>
-      <p className="my-4 text-sm flex justify-between px-3">
-        Don't have an account?
-        <Link to="/register" className="text-blue-700 hover:text-blue-900">
-          Register
-        </Link>
-      </p>
-    </div>
+        <form onSubmit={handleSubmit}>
+            <div className="email-login" style={{backgroundColor: '#ffffff'}}>
+            <input type="email" name="email" id="email" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Correo"
+                onChange={handleChange}
+                autoComplete="off"/>
+            <input type="password" name="password" id="password" className="password-input form-control"
+                style={{marginTop: '10px'}}
+                placeholder="*****************"
+                onChange={handleChange}
+                />
+            </div>
+            <div className="submit-row" style={{marginBottom: '8px', paddingTop: '0px'}}>
+                <button className="btn btn-primary d-block box-shadow w-100" 
+                    id="submit-id-submit" 
+                    type="submit">
+                Login</button>
+            <div className="d-flex justify-content-between">
+                <div className="form-check form-check-inline" id="form-check-rememberMe">
+                    <input className="form-check-input" type="checkbox" id="formCheck-1" htmlFor="remember" style={{cursor: 'pointer'}} name="check" />
+                    <label className="form-check-label" htmlFor="formCheck-1"><span className="label-text">Recuerdame</span></label></div>
+                    <a id="forgot-password-link" href="#!" onClick={handleResetPassword}>¿Olvido su contraseña?</a>
+            </div>
+            </div>
+        </form>
+        <div id="login-box-footer" style={{padding: '10px 20px', paddingBottom: '23px', paddingTop: '18px'}}>
+          <p style={{marginBottom: '0px'}}>¿No tienes una cuenta?<Link to="/register" id="register-link" href="#">Registrate!</Link></p>
+        </div>
+      </div>
   );
 }

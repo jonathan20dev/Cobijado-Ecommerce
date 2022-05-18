@@ -1,7 +1,7 @@
 ### `Cobijado` Team:
 
-#Jonathan Mendoza
-#Kimberly Vargas
-#Johan
-#Jordan
-#Oscar
+## Jonathan Mendoza
+## Kimberly Vargas
+## Johan
+## Jordan
+## Oscar

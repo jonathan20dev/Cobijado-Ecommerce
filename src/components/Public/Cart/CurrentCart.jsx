@@ -31,7 +31,7 @@ const Cart = () => {
                     </div>
                     <div className="ref-footer">
                       <div className="ref-links">
-                        <a href="https://google.com" target="_blank">
+                        <a href="https://google.com" target="_blank" rel="noreferrer">
                           Política de devouciones
                         </a>
                       </div>

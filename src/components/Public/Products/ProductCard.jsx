@@ -6,7 +6,7 @@ function ProductCard({ nombre, descripcion, precio, img, id }) {
     <div className="ref-product" onClick={()=> {
       navigate(`/product/${id}`)
     }}>
-      <img src={img} loading="lazy" className="ref-image" />
+      <img src={img} alt="card-producto" loading="lazy" className="ref-image" />
       <div className="ref-product-data">
         <div className="ref-product-info">
           <h5 className="ref-name">{nombre}</h5>

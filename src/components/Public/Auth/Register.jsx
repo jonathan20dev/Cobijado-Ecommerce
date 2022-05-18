@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../negocio/context/AuthContext";
 import { Alert } from "./Alert";
+import "./Register.css"
+
 export function Register() {
   const { signup, insertUserFB } = useAuth();
 
@@ -26,53 +28,39 @@ export function Register() {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto text-black">
-      {error && <Alert message={error} />}
-
-      <form style={{marginTop:'50px'}}
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
-      >
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="youremail@company.tld"
-          />
+    <div className="d-flex flex-column justify-content-center" id="login-box">
+        {error && <Alert message={error} />}
+        <div className="login-box-header">
+        <h4 style={{color: 'rgb(139,139,139)', marginBottom: '0px', fontWeight: 400, fontSize: '27px'}}>Registro</h4>
         </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*************"
-          />
+        <div className="d-flex flex-row align-items-center login-box-seperator-container">
+        <div className="login-box-seperator" />
+        <div className="login-box-seperator" />
         </div>
-
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          Register
-        </button>
-      </form>
-      <p className="my-4 text-sm flex justify-between px-3">
-        Already have an Account?
-        <Link to="/login" className="text-blue-700 hover:text-blue-900">
-          Login
-        </Link>
-      </p>
+        <form onSubmit={handleSubmit}>
+            <div className="email-login" style={{backgroundColor: '#ffffff'}}>
+            <input type="email" name="email" id="email" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Correo"
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                autoComplete="off"/>
+            <input type="password" name="password" id="password" className="password-input form-control"
+                style={{marginTop: '10px'}}
+                placeholder="*****************"
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+                />
+            </div>
+            <div className="submit-row" style={{marginBottom: '8px', paddingTop: '0px'}}>
+                <button className="btn btn-primary d-block box-shadow w-100" 
+                    id="submit-id-submit" 
+                    type="submit">
+                    Registrarme
+                </button>
+            </div>
+        </form>
+        <div id="login-box-footer" style={{padding: '10px 20px', paddingBottom: '23px', paddingTop: '18px'}}>
+        <p style={{marginBottom: '0px'}}>¿Ya tienes una cuenta?<Link to="/login" id="register-link" href="#">Logueate!</Link></p>
+        </div>
     </div>
   );
 }

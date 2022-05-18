@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuth } from "../../../negocio/context/AuthContext";
 import { NavLink } from "react-router-dom";
 import "./header.css";
 
 function Header() {
-  const { logout, user } = useAuth();
+  const { logout } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -40,12 +40,12 @@ function Header() {
               ></i>
             </span>
           </button>
-          <div
-            className="navbar-brand d-flex align-items-center justify-content-center"
+          <a
+            className="navbar-brand d-flex align-items-center justify-content-center" href="/"
             style={{ letterSpacing: "0.1em", fontSize: "28px" }}
           >
             Cobijado
-          </div>
+          </a>
           <div id="navcol-1" className="collapse navbar-collapse">
             <ul
               className="navbar-nav mx-auto"
@@ -79,7 +79,7 @@ function Header() {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                   aria-current="page"
-                  to="/contacto"
+                  to="/contact"
                 >
                   Contacto
                 </NavLink>
@@ -90,7 +90,7 @@ function Header() {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                   aria-current="page"
-                  to="/acerca"
+                  to="/about"
                 >
                   Acerca de
                 </NavLink>
@@ -155,14 +155,14 @@ function Header() {
               margin: "5px",
             }}
           >
-            <a className="dropdown-item" href="#">
-              First Item
+            <a className="dropdown-item" href="/profile">
+              Mi Perfil
             </a>
-            <a className="dropdown-item" href="#">
-              Second Item
+            <a className="dropdown-item" href="/user-history">
+              Historial Compra
             </a>
-            <a className="dropdown-item" href="#">
-              Third Item
+            <a className="dropdown-item" href="/login" onClick={handleLogout}>
+              Salir
             </a>
           </div>
         </div>

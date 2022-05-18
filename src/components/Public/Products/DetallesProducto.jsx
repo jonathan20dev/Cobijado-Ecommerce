@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useProducts } from "../../../negocio/context/ProductsContext";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
@@ -39,6 +39,7 @@ function DetallesProducto() {
                     className="ref-image active"
                     src={producto.img}
                     data-reflow-preview-type="image"
+                    alt="producto"
                   />
                 </div>
               </div>
@@ -92,9 +93,9 @@ function DetallesProducto() {
                         </div>
                       </div>
                     </span>
-                    <a className="ref-button" href="#">
+                    <button className="ref-button" href="#">
                       Add to Cart
-                    </a>
+                    </button>
                   </div>
                 </span>
                 <div className="ref-description">{producto.descripcion}</div>

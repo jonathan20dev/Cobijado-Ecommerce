@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Header } from "../shared/Header";
 import { CarouselBanner } from "./CarouselBanner"
 import { Novedades } from "./Novedades/Novedades"
-import { ProductCard } from "../Products/ProductCard.jsx"
 import { Footer } from "../shared/Footer"
 import { Products } from "../Products/Products";
 
