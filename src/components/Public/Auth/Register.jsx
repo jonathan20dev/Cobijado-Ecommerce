@@ -5,11 +5,16 @@ import { Alert } from "./Alert";
 import "./Register.css"
 
 export function Register() {
-  const { signup, insertUserFB } = useAuth();
+  const { signup,insertUserRegister } = useAuth();
 
   const [user, setUser] = useState({
     email: "",
     password: "",
+    nombre: "",
+    telefono: "",
+    codigo_postal: 0,
+    status: true,
+    img: "https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png"
   });
 
   const [error, setError] = useState("");
@@ -21,7 +26,7 @@ export function Register() {
     try {
       await signup(user.email, user.password);
       navigate("/");
-      insertUserFB()
+      insertUserRegister(user.codigo_postal, user.email, user.img, user.nombre, user.status, user.telefono)
     } catch (error) {
       setError(error.message);
     }
@@ -44,9 +49,24 @@ export function Register() {
                 placeholder="Correo"
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
                 autoComplete="off"/>
+            <input type="text" name="name" id="name" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Nombre Completo"
+                onChange={(e) => setUser({ ...user, nombre: e.target.value })}
+                autoComplete="off"/>
+            <input type="tel" name="phone" id="phone" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Teléfono"
+                onChange={(e) => setUser({ ...user, telefono: e.target.value })}
+                autoComplete="off"/>
+            <input type="number" name="cpostal" id="cpostal" className="email-imput form-control" 
+                style={{marginTop: '10px'}}
+                placeholder="Código postal"
+                onChange={(e) => setUser({ ...user, codigo_postal: e.target.value })}
+                autoComplete="off"/>
             <input type="password" name="password" id="password" className="password-input form-control"
                 style={{marginTop: '10px'}}
-                placeholder="*****************"
+                placeholder="***********"
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                 />
             </div>

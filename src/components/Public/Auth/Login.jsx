@@ -32,7 +32,6 @@ export function Login() {
     try {
       await loginWithGoogle();
       insertUserFB()
-      //setUaux({correo: user.email, id: user.reloadUserInfo.localId})
       navigate("/");
       
     } catch (error) {

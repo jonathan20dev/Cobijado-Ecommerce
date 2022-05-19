@@ -21,7 +21,6 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [userFb, setUserFb] = useState({correo: '', codigo_postal: 0, direccion: '', img: '', nombre: '', status: true});
   const [loading, setLoading] = useState(true);
 
 
@@ -35,10 +34,14 @@ export function AuthProvider({ children }) {
 
   const insertUserFB = () => {
     const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
-      const photo = currentUser.photoURL || " "
-      const disName = currentUser.displayName || "Usuario"
-      insertUser(currentUser.reloadUserInfo.localId, {...userFb, correo: currentUser.email, img: photo, nombre: disName})
-      setUserFb({...userFb, correo: currentUser.email, img: photo, nombre: disName})
+      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: "0000", correo: currentUser.email, img: currentUser.photoURL, nombre: currentUser.displayName, status: true, telefono: "0000-0000", direccion: ""})
+    })
+    obtenerUsuario()
+  }
+
+  const insertUserRegister = (cp, mail, image, name, estado, phone) => {
+    const obtenerUsuario = onAuthStateChanged(auth, (currentUser) => {
+      insertUser(currentUser.reloadUserInfo.localId, {codigo_postal: cp, correo: mail, img: image, nombre: name, status: estado, telefono: phone, direccion: ""})
     })
     obtenerUsuario()
   }
@@ -72,7 +75,8 @@ export function AuthProvider({ children }) {
         loading,
         loginWithGoogle,
         resetPassword,
-        insertUserFB
+        insertUserFB,
+        insertUserRegister
       }}
     >
       {children}

@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import {Header} from "./../shared/Header"
 import { Footer } from "./../shared/Footer"
+import { useAuth } from "./../../../negocio/context/AuthContext"
+import { getUser } from "../../../data/GetUser"
 
 const Profile = () => {
-  const img = "https://tecdigital.tec.ac.cr/dotlrn/file-storage/view/dotlrn_fs_1066758_root_folder%2Fdesign%2FprofileAux.png"
+  const [userP, setUser] = useState({
+    codigo_postal: "",
+    correo: "",
+    id: "",
+    img: "",
+    nombre: "",
+    status: true,
+    telefono: "",
+    direccion: ""
+  })
+  const { user } = useAuth();
+  
+  const extractUser = async() => {
+    const usuario = await getUser(user.reloadUserInfo.localId)
+    setUser(usuario)
+  }
+
+  useEffect(() => {
+    extractUser()
+  }, [])
+  
+  const completeName = userP.nombre.split(" ");
   return (
     <>
     <Header/>
@@ -14,12 +37,12 @@ const Profile = () => {
             className="border rounded-0 border-dark p-3 p-xl-4">
             <img
               className="rounded-circle border border-0 border-primary shadow"
-              src={img}
+              src={userP.img}
               alt="imagen usuario"
               style={{ width: "216", height: "auto" }}
             />
             <p className="lead" style={{ marginTop: "10px" }}>
-              Marco Serrano
+              {userP.nombre}
             </p>
             <a
               className="btn btn-light border rounded-0 border-dark"
@@ -53,7 +76,7 @@ const Profile = () => {
                     <p style={{ color: "rgb(0,0,0)" }}>
                       Email de inicio de sesión:
                       <br />
-                      jonathan20.dev@gmail.com
+                      {userP.correo}
                       <br />
                       <em>Tu email de inicio de sesión no se puede cambiar</em>
                       <br />
@@ -70,7 +93,7 @@ const Profile = () => {
                       type="text"
                       id="name-1"
                       name="name"
-                      placeholder="Marco"
+                      placeholder={completeName[0]}
                       style={{ borderRadius: "5px" }}
                     />
                     <p></p>
@@ -78,7 +101,7 @@ const Profile = () => {
                     <input
                       className="form-control"
                       type="tel"
-                      placeholder="5013-5801"
+                      placeholder={userP.telefono}
                       style={{ borderRadius: "5px" }}
                     />
                   </form>
@@ -91,7 +114,7 @@ const Profile = () => {
                       type="text"
                       id="name-2"
                       name="name"
-                      placeholder="Serrano"
+                      placeholder={completeName[1]}
                       style={{ borderRadius: "5px" }}
                     />
                     <p></p>
@@ -100,7 +123,7 @@ const Profile = () => {
                       className="form-control"
                       type="number"
                       min="4"
-                      placeholder="2611"
+                      placeholder={userP.codigo_postal}
                       style={{ borderRadius: "5px" }}
                     />
                   </form>
