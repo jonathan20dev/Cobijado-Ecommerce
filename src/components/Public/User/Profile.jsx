@@ -4,8 +4,12 @@ import { Footer } from "./../shared/Footer"
 import { useAuth } from "./../../../negocio/context/AuthContext"
 import { getUser } from "../../../data/GetUser"
 import { insertUser } from '../../../data/InsertUser'
+import { useAlerts } from "../../../negocio/context/AlertsControl";
+import { Alert } from "../shared/Alert/Alert";
+import { Mensaje } from "../shared/Alert/Mensaje";
 
 const Profile = () => {
+  const { openModal, onClickButton } = useAlerts();
   const [userP, setUser] = useState({
     codigo_postal: "",
     correo: "",
@@ -35,7 +39,7 @@ const Profile = () => {
   return (
     <>
     <Header/>
-    <form onSubmit={handleSubmit} className="container" >
+    <form onSubmit={handleSubmit} className="container" style={{marginTop: "10px"}}>
       <div className="row">
         <div className="col-lg-4 offset-lg-0 text-center">
           <div
@@ -145,10 +149,18 @@ const Profile = () => {
                     <button
                       className="btn btn-dark border rounded-0 border-dark shadow-sm"
                       type="submit"
+                      onClick={() => {
+                        onClickButton()
+                        }}
                       style={{ marginTop: "20px" }}>
                       Actualizar información
                       <br />
                     </button>
+                    {openModal && (
+                      <Alert>
+                        <Mensaje icono={'bi bi-check-circle'} mensaje={'Perfil actualizado'} tipo={'success'}/>
+                      </Alert>
+                    )}
                   </div>
                 </div>
               </div>

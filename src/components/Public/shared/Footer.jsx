@@ -13,19 +13,19 @@ function Footer() {
 
                 <div className="col-md-3 mb-md-0 mb-3">
                     <ul className="list-unstyled">
-                        <li><a href="#!">Inicio</a></li>
-                        <li><a href="#!">Tienda</a></li>
-                        <li><a href="#!">Contacto</a></li>
-                        <li><a href="#!">Acerca de</a></li>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/products/todos">Tienda</a></li>
+                        <li><a href="/contact">Contacto</a></li>
+                        <li><a href="/about">Acerca de</a></li>
                     </ul>
                 </div>
 
                 <div className="col-md-3 mb-md-0 mb-3">
                     <ul className="list-unstyled">
                         <li className="d-flex justify-content-center">
-                            <i ><a style= {{margin:'10px'}}href="#!">Facebook</a></i>
-                            <i><a style= {{margin:'10px'}} href="#!">Twitter</a></i>
-                            <i><a style= {{margin:'10px'}} href="#!">Instagram</a></i>
+                            <i><a style= {{margin:'10px'}}href="#!"><i style={{margin:"10px"}} className="bi bi-facebook"></i></a></i>
+                            <i><a style= {{margin:'10px'}} href="#!"><i style={{margin:"10px"}} className="bi bi-twitter"></i></a></i>
+                            <i><a style= {{margin:'10px'}} href="#!"><i style={{margin:"10px"}} className="bi bi-instagram"></i></a></i>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +40,7 @@ function Footer() {
     </div>
 
     <div className="footer-copyright text-center py-3">© 2022 Copyright:
-        <a href="https://mdbootstrap.com/"> cobijado.com</a>
+        <a href="#!"> cobijado.com</a>
     </div>
 
 </footer>
