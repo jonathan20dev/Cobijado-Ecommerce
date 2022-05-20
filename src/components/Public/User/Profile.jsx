@@ -26,6 +26,7 @@ const Profile = () => {
     extractUser()
   }, [])
   
+  console.log(userP)
   const completeName = userP.nombre.split(" ");
   return (
     <>
@@ -114,7 +115,7 @@ const Profile = () => {
                       type="text"
                       id="name-2"
                       name="name"
-                      placeholder={completeName[1]}
+                      placeholder={(completeName.filter((x, index) => index > 0)).join(" ")}
                       style={{ borderRadius: "5px" }}
                     />
                     <p></p>
