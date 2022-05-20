@@ -66,7 +66,8 @@ const PublicRoute = () => {
           element={
             <ProtectedRoute>
               {" "}
-              <Profile />{" "}
+              <Profile />
+              {" "}
             </ProtectedRoute>
           }
         />
@@ -112,7 +113,7 @@ const PublicRoute = () => {
           element={
             <ProtectedRoute>
               {" "}
-              <UserHistory />
+                <UserHistory />
             </ProtectedRoute>
           }
         />

@@ -156,15 +156,42 @@ function Header() {
               margin: "5px",
             }}
           >
-            <a className="dropdown-item" href="/profile">
-              Mi Perfil
-            </a>
-            <a className="dropdown-item" href="/user-history">
-              Historial Compra
-            </a>
-            <a className="dropdown-item" href="/login" onClick={handleLogout}>
-              Salir
-            </a>
+            <div className="dropdown-item" >
+            <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  style={{ color: "black" }}
+                  aria-current="page"
+                  to="/profile"
+                >
+                  Mi Perfil
+                </NavLink>
+            </div>
+            <div className="dropdown-item">
+            <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  style={{ color: "black" }}
+                  aria-current="page"
+                  to="/user-history"
+                >
+                  Historial Compra
+                </NavLink>
+            </div>
+            <div className="dropdown-item" onClick={handleLogout}>
+            <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  style={{ color: "black" }}
+                  aria-current="page"
+                  to="/login"
+                >
+                  Salir
+                </NavLink>
+            </div>
           </div>
         </div>
       </div>
