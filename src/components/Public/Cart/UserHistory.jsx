@@ -82,7 +82,6 @@ const UserHistory = () => {
     extractCollection()
   }, [])
 
-  console.log(usuario, factura)
   return (
     <>
     <Header/>
