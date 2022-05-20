@@ -6,7 +6,9 @@ function ProductCard({ nombre, descripcion, precio, img, id }) {
     <div className="ref-product" style={{cursor: 'pointer'}} onClick={()=> {
       navigate(`/product/${id}`)
     }}>
-      <img src={img} alt="card-producto" loading="lazy" className="ref-image" />
+      <div className="ref-image" style={{width: '100%', height: '250px', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+        <img src={img} alt="card-producto" loading="lazy" style={{width: 'auto', height: '250px'}} />
+      </div>
       <div className="ref-product-data">
         <div className="ref-product-info">
           <h5 className="ref-name">{nombre}</h5>

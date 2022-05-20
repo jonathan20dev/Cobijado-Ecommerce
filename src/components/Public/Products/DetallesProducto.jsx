@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useCarrito } from "../../../negocio/context/CarritoContext";
 import { useProducts } from "../../../negocio/context/ProductsContext";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 
 function DetallesProducto() {
   const { productoActual } = useProducts();
+  const { agregarAlCarro } = useCarrito();
   const { id } = useParams();
   let [cant, setCant] = useState(1);
+  let [talla, setTalla] = useState();
   let producto = productoActual(id)
 
   if (producto === undefined) {
       producto = {
         img: '',
         nombre: '',
-        precio: '',
+        precio: 0,
         descripcion: ''
       }
     }
 
 
-  const handleChange = (accion) => {
+  const handleCant = (accion) => {
     if (accion === "increase") {
       setCant((cant += 1));
     } else if (accion === "decrease") {
@@ -30,6 +33,9 @@ function DetallesProducto() {
     }
   };
 
+  const handleTalla = ({ target }) => {
+    setTalla(target.value)
+  };
 
   return (
     <div>
@@ -44,11 +50,12 @@ function DetallesProducto() {
           >
             <div className="reflow-product">
               <div className="ref-media">
-                <div className="ref-preview">
+                <div className="ref-preview" style={{display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
                   <img
                     className="ref-image active"
                     src={producto.img}
                     data-reflow-preview-type="image"
+                    style={{width: 'auto'}}
                     alt="producto"
                   />
                 </div>
@@ -70,10 +77,11 @@ function DetallesProducto() {
                           className="ref-form-control ref-field-variants"
                           name="variant-state"
                           required
+                          onChange={handleTalla}
                         >
-                          <option value="199976733_s">S</option>
-                          <option value="199976733_m">M</option>
-                          <option value="199976733_l">L</option>
+                          <option value="S">S</option>
+                          <option value="M">M</option>
+                          <option value="L">L</option>
                         </select>
                       </label>
                     </div>
@@ -87,7 +95,7 @@ function DetallesProducto() {
                         <div
                           className="ref-decrease"
                           onClick={() => {
-                            handleChange("decrease");
+                            handleCant("decrease");
                           }}
                         >
                           <span></span>
@@ -96,14 +104,14 @@ function DetallesProducto() {
                         <div
                           className="ref-increase"
                           onClick={() => {
-                            handleChange("increase");
+                            handleCant("increase");
                           }}
                         >
                           <span></span>
                         </div>
                       </div>
                     </span>
-                    <button className="ref-button" href="#">
+                    <button className="ref-button" onClick={() => agregarAlCarro(producto, cant, talla)}>
                       Add to Cart
                     </button>
                   </div>
