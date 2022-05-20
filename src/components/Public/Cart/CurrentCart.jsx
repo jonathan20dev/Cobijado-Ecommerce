@@ -1,9 +1,12 @@
 import React from "react";
+import { useCarrito } from "../../../negocio/context/CarritoContext";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { CartProduct } from "./CartProduct";
 
 const Cart = () => {
+  const { carrito } = useCarrito();
+
   return (
     <div>
       <Header/>
@@ -27,7 +30,7 @@ const Cart = () => {
                       <div className="ref-total-col">Total</div>
                     </div>
                     <div className="ref-cart-table">
-                      <CartProduct/>
+                      {carrito.productos.map(producto => <CartProduct key={producto.articulo.id} {...producto}/>)}
                     </div>
                     <div className="ref-footer">
                       <div className="ref-links">
@@ -36,7 +39,7 @@ const Cart = () => {
                         </a>
                       </div>
                       <div className="ref-totals">
-                        <div className="ref-subtotal">Subtotal: $1,157.46</div>
+                        <div className="ref-subtotal">Subtotal: {carrito.total}</div>
                         <div className="ref-shipping-taxes">
                           Los impuestos y envío son calculados
                           <br /> durante el checkout.

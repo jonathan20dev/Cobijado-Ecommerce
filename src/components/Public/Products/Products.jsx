@@ -5,7 +5,7 @@ import {ProductCard} from './ProductCard.jsx'
 
 function Products({ products }) {
   return (
-      <section className="py-5" style={{width: '100%', margin: '10px'}}>
+      <section className="py-5" style={{width: '100%'}}>
         <div className="container" >
           <div className="row mx-auto" style={{width: '100%'}}>
             <div className="col">
