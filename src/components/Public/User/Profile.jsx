@@ -3,6 +3,7 @@ import {Header} from "./../shared/Header"
 import { Footer } from "./../shared/Footer"
 import { useAuth } from "./../../../negocio/context/AuthContext"
 import { getUser } from "../../../data/GetUser"
+import { insertUser } from '../../../data/InsertUser'
 
 const Profile = () => {
   const [userP, setUser] = useState({
@@ -26,15 +27,18 @@ const Profile = () => {
     extractUser()
   }, [])
   
-  console.log(userP)
-  const completeName = userP.nombre.split(" ");
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      insertUser(user.reloadUserInfo.localId, userP)
+  };
+
   return (
     <>
     <Header/>
-    <div className="container" >
+    <form onSubmit={handleSubmit} className="container" >
       <div className="row">
         <div className="col-lg-4 offset-lg-0 text-center">
-          <form
+          <div
             className="border rounded-0 border-dark p-3 p-xl-4">
             <img
               className="rounded-circle border border-0 border-primary shadow"
@@ -51,15 +55,15 @@ const Profile = () => {
             >
               Historial de Compra
             </a>
-          </form>
+          </div>
         </div>
         <div className="col">
             <div className="container border rounded-0 border-dark position-relative" style={{ display: 'flex', flexDirection: 'column' }}>
               <div className="row">
                 <div className="col">
-                  <form className="p-3 p-xl-4" style={{ fontSize: "14" }}>
+                  <div className="p-3 p-xl-4" style={{ fontSize: "14" }}>
                     <p
-                      className="fs-3"
+                      className="fs-2"
                       style={{
                         color: "rgb(0,0,0)",
                         fontSize: "20",
@@ -82,76 +86,76 @@ const Profile = () => {
                       <em>Tu email de inicio de sesión no se puede cambiar</em>
                       <br />
                     </p>
-                  </form>
+                  </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-md-6 col-lg-6 col-xl-6">
-                  <form className="p-3 p-xl-4">
-                    <p style={{ color: "rgb(0,0,0)" }}>Nombre</p>
+              <div className="row" style={{marginTop: "-30px"}}>
+                <div className="col">
+                  <div className="p-3 p-xl-4" method="post">
+                    <p style={{ color: "rgb(0,0,0)" }}>Nombre completo</p>
                     <input
                       className="form-control"
                       type="text"
-                      id="name-1"
+                      id="name"
                       name="name"
-                      placeholder={completeName[0]}
+                      placeholder={userP.nombre}
+                      onChange={(e) => setUser({ ...userP, nombre: e.target.value })}
                       style={{ borderRadius: "5px" }}
                     />
-                    <p></p>
+                  </div>
+                </div>
+              </div>
+              <div className="row" style={{marginTop: "-20px"}}>
+                <div className="col-md-6 col-lg-6 col-xl-6">
+                  <div className="p-3 p-xl-4">
                     <p style={{ color: "rgb(0,0,0)" }}>Teléfono</p>
                     <input
                       className="form-control"
                       type="tel"
                       placeholder={userP.telefono}
+                      onChange={(e) => setUser({ ...userP, telefono: e.target.value })}
                       style={{ borderRadius: "5px" }}
                     />
-                  </form>
+                  </div>
                 </div>
                 <div className="col-lg-6">
-                  <form className="p-3 p-xl-4">
-                    <p style={{ color: "rgb(0,0,0)" }}>Apellidos</p>
-                    <input
-                      className="form-control"
-                      type="text"
-                      id="name-2"
-                      name="name"
-                      placeholder={(completeName.filter((x, index) => index > 0)).join(" ")}
-                      style={{ borderRadius: "5px" }}
-                    />
-                    <p></p>
+                  <div className="p-3 p-xl-4">
                     <p style={{ color: "rgb(0,0,0)" }}>Código postal</p>
                     <input
                       className="form-control"
                       type="number"
                       min="4"
                       placeholder={userP.codigo_postal}
+                      onChange={(e) => setUser({ ...userP, codigo_postal: e.target.value })}
                       style={{ borderRadius: "5px" }}
                     />
-                  </form>
+                  </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row" style={{marginTop: "-20px"}}>
                 <div className="col">
-                  <form className="p-3 p-xl-4" method="post">
+                  <div className="p-3 p-xl-4" method="post">
                     <p style={{ color: "rgb(0,0,0)" }}>Dirección</p>
                     <textarea
                       className="form-control"
+                      placeholder={userP.direccion}
                       style={{ borderRadius: "5px" }}
+                      onChange={(e) => setUser({ ...userP, direccion: e.target.value })}
                     ></textarea>
                     <button
-                      className="btn btn-dark border rounded-1 border-dark shadow-sm"
-                      type="button"
+                      className="btn btn-dark border rounded-0 border-dark shadow-sm"
+                      type="submit"
                       style={{ marginTop: "20px" }}>
                       Actualizar información
                       <br />
                     </button>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
         </div>
       </div>
-    </div>
+    </form>
     <Footer/>
     </>
   )
