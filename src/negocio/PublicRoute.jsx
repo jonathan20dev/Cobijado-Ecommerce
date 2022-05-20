@@ -14,6 +14,7 @@ import { ProductsProvider } from "../negocio/context/ProductsContext.jsx";
 import { Cart } from "../components/Public/Cart/CurrentCart.jsx";
 import { UserHistory } from "../components/Public/Cart/UserHistory";
 import { CarritoProvider } from "./context/CarritoContext.jsx";
+import { AlertsControl } from "./context/AlertsControl.jsx";
 
 const PublicRoute = () => {
   let date = new Date().toDateString();
@@ -27,6 +28,7 @@ const PublicRoute = () => {
   
   return (
     <AuthProvider>
+      <AlertsControl>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -115,6 +117,7 @@ const PublicRoute = () => {
           }
         />
       </Routes>
+      </AlertsControl>
     </AuthProvider>
   );
 };

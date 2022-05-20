@@ -3,6 +3,7 @@ import { useCarrito } from "../../../negocio/context/CarritoContext";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { CartProduct } from "./CartProduct";
+import { insertCompra } from "../../../data/InsertCompra";
 
 const Cart = () => {
   const { carrito } = useCarrito();
@@ -11,7 +12,7 @@ const Cart = () => {
     <div>
       <Header/>
       <section className="mt-5">
-      <div className="py-5" style={{ margin: "30px" }}>
+      <div style={{ margin: "30px" }}>
         <div className="row mx-auto">
             <div className="col">
               <div data-reflow-type="shopping-cart">
@@ -22,7 +23,7 @@ const Cart = () => {
                     style={{ display: "none" }}
                   ></div>
                   <div className="ref-cart" style={{ display: "block" }}>
-                    <div className="ref-heading">Carrito</div>
+                    <div className="ref-heading" style={{ textAlign: 'center' }}>Carrito</div>
                     <div className="ref-th">
                       <div className="ref-product-col">Producto</div>
                       <div className="ref-price-col">Precio</div>
@@ -44,7 +45,10 @@ const Cart = () => {
                           Los impuestos y envío son calculados
                           <br /> durante el checkout.
                         </div>
-                        <div className="ref-button ref-checkout-button">
+                        <div className="ref-button ref-checkout-button" onClick={() => {
+                          insertCompra(carrito)
+                          console.log(carrito)
+                          }}>
                           Checkout
                         </div>
                       </div>
@@ -56,7 +60,7 @@ const Cart = () => {
         </div>
       </div>
     </section>
-    <Footer/>
+    <Footer/> 
     </div>
   );
 };
