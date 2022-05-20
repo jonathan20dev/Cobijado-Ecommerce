@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAlerts } from "../../../negocio/context/AlertsControl";
 import { useCarrito } from "../../../negocio/context/CarritoContext";
 import { useProducts } from "../../../negocio/context/ProductsContext";
+import { Alert } from "../shared/Alert/Alert";
+import { Mensaje } from "../shared/Alert/Mensaje";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 
 function DetallesProducto() {
+  const { openModal, onClickButton } = useAlerts();
   const { productoActual } = useProducts();
   const { agregarAlCarro } = useCarrito();
   const { id } = useParams();
   let [cant, setCant] = useState(1);
-  let [talla, setTalla] = useState();
+  let [talla, setTalla] = useState('S');
   let producto = productoActual(id)
 
   if (producto === undefined) {
@@ -21,7 +25,6 @@ function DetallesProducto() {
         descripcion: ''
       }
     }
-
 
   const handleCant = (accion) => {
     if (accion === "increase") {
@@ -111,9 +114,17 @@ function DetallesProducto() {
                         </div>
                       </div>
                     </span>
-                    <button className="ref-button" onClick={() => agregarAlCarro(producto, cant, talla)}>
+                    <button className="ref-button" onClick={() => {
+                      agregarAlCarro(producto, cant, talla)
+                      onClickButton()
+                      }}>
                       Add to Cart
                     </button>
+                    {openModal && (
+                      <Alert>
+                        <Mensaje icono={'bi bi-check-circle'} mensaje={'Se añadió un nuevo producto al carrito'} tipo={'success'}/>
+                      </Alert>
+                    )}
                   </div>
                 </span>
                 <div className="ref-description">{producto.descripcion}</div>
