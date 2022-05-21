@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCarrito } from "../../../negocio/context/CarritoContext";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { CartProduct } from "./CartProduct";
 import { insertCompra } from "../../../data/InsertCompra";
+import { useAlerts } from "../../../negocio/context/AlertsControl";
+import { Alert } from "../shared/Alert/Alert";
+import { Mensaje } from "../shared/Alert/Mensaje";
 
 const Cart = () => {
+  const { openModal, onClickButton } = useAlerts();
+  const [vacio, setVacio] = useState(false)
   const { carrito } = useCarrito();
+
+  const avisoVacio = () => {
+    setVacio((prevState) => !prevState);
+    setTimeout(function(){
+      setVacio((prevState) => !prevState);
+    }, 1200);
+  };
 
   return (
     <div>
@@ -46,11 +58,30 @@ const Cart = () => {
                           <br /> durante el checkout.
                         </div>
                         <div className="ref-button ref-checkout-button" onClick={() => {
-                          insertCompra(carrito)
-                          console.log(carrito)
-                          }}>
+                          if (carrito.productos.length !== 0 ) {
+                            console.log('pago')
+                            insertCompra(carrito)
+                            carrito.productos = []
+                            carrito.total = 0
+                            onClickButton()
+                          } else {
+                            avisoVacio()
+                          }
+                        }}>
                           Checkout
                         </div>
+                        {
+                          vacio && (
+                            <Alert>
+                              <Mensaje icono={'bi bi-exclamation-triangle'} mensaje={'El carrito está vacío!'} tipo={'danger'}/>
+                            </Alert>
+                          )
+                        }
+                        {openModal && (
+                          <Alert>
+                            <Mensaje icono={'bi bi-check-circle'} mensaje={'Orden lista para realizar pago!'} tipo={'success'}/>
+                          </Alert>
+                        )}
                       </div>
                     </div>
                   </div>

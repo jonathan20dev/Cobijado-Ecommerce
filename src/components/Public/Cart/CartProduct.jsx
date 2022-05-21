@@ -8,8 +8,10 @@ function CartProduct({ articulo, cantidad, talla, totalArticulo }) {
 
   const handleCant = (accion) => {
     if (accion === "increase") {
-      setCant((cant += 1));
-      cambiarCant(articulo.id, true);
+      if (cant !== articulo.cantidad) {
+        setCant((cant += 1));
+        cambiarCant(articulo.id, true);
+      }
     } else if (accion === "decrease") {
       if (cant !== 1) {
         setCant((cant -= 1));

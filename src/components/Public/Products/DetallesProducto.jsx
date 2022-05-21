@@ -28,7 +28,9 @@ function DetallesProducto() {
 
   const handleCant = (accion) => {
     if (accion === "increase") {
-      setCant((cant += 1));
+      if (cant !== producto.cantidad) {
+        setCant((cant += 1));
+      }
     } else if (accion === "decrease") {
       if (cant !== 1) {
         setCant((cant -= 1));
