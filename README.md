@@ -64,7 +64,8 @@ src
 
 
 
-## Authors
+## Authors 👍✨
+
 | <img src="https://media-exp1.licdn.com/dms/image/C5603AQFIcEFL-NSfqA/profile-displayphoto-shrink_800_800/0/1627255607401?e=1669852800&v=beta&t=voVrrkA8xxrczDIkoYV21BwMfLU3z4yRKtKf17SBVZs" alt="react native chat" width="200px" />  | <img src="https://media-exp1.licdn.com/dms/image/D4E35AQFSR6tlHszb7A/profile-framedphoto-shrink_200_200/0/1663436772487?e=1665108000&v=beta&t=zEFR8hum6XrX9JLPPXNgfGYesY49fqk9B4YXUspcyQc" alt="react native chat" width="200px" />  |
 | :------------: | :------------: |
 |  *Kimberly Vargas* | *Jonathan Mendoza*  |
