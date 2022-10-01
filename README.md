@@ -1,4 +1,4 @@
-### `Cobijado` Team:
+## `Cobijado`
 
 ## Jonathan Mendoza
 ## Kimberly Vargas
